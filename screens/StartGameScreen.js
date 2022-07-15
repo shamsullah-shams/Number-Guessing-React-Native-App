@@ -12,21 +12,24 @@ import Card from "../component/Card";
 import Colors from "../constants/Colors";
 import Input from "../component/Input";
 import NumberContainer from "../component/NumberContainer";
+import BodyText from "../component/BodyText";
 
 const StartGameScreen = (props) => {
     const [enteredValue, setEnteredValue] = useState('');
     const [confirmed, setConfirmed] = useState(false);
-    const [selectedNumber, setSelectedNumber] = useState()
+    const [selectedNumber, setSelectedNumber] = useState();
 
+    // @@ ==== validating input
     const numberInputHandler = inputText => {
         setEnteredValue(inputText.replace(/[^0-9]/g, ''));
     }
-
+    // @@ ==== to reset the input value
     const resetInputHandler = () => {
         setEnteredValue('');
         setConfirmed(false);
     }
 
+    // @@ ==== to start the game
     const confirmInputHandler = () => {
         const choseNumber = parseInt(enteredValue);
         if (isNaN(choseNumber) || choseNumber <= 0 || choseNumber > 99) {
@@ -58,11 +61,11 @@ const StartGameScreen = (props) => {
             Keyboard.dismiss()
         }}>
             <View style={styles.screen}>
-                <Text style={styles.title}>
+                <BodyText style={styles.title}>
                     Start a New Game
-                </Text>
+                </BodyText>
                 <Card style={styles.inputContainer}>
-                    <Text>Select a Number</Text>
+                    <BodyText>Select a Number</BodyText>
                     <Input
                         style={styles.input}
                         blurOnSubmit
@@ -107,6 +110,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginVertical: 10,
+        fontFamily: "open-sans-bold",
     },
     inputContainer: {
         width: 300,
